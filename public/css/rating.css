@@ -1,0 +1,31 @@
+.starability-basic {
+  display: inline-block;
+}
+
+.starability-basic input {
+  position: absolute;
+  margin: 0;
+  opacity: 0;
+}
+
+.starability-basic label {
+  position: relative;
+  float: right;
+  width: 1.2em;
+  cursor: pointer;
+  font-size: 30px;
+  color: #ccc;
+}
+
+.starability-basic label:before {
+  content: "★";
+}
+
+.starability-basic input:checked ~ label {
+  color: #ffc700;
+}
+
+.starability-basic label:hover,
+.starability-basic label:hover ~ label {
+  color: #deb217;
+}
