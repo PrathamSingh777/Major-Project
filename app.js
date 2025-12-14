@@ -1,6 +1,4 @@
- if(process.env.NODE_ENV !="production"){
-  require("dotenv").config() ;
- }
+require("dotenv").config();
    
 console.log("Cloud:", process.env.CLOUD_NAME);
 
@@ -99,9 +97,10 @@ app.use((req,res,next)=>{
 //  res.send(registeredUser);
 // });
 
- app.listen(8080,(req,res)=>{
-    console.log("listening on port 8080");
- });
+ const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  console.log(`listening on port ${PORT}`);
+});
 
 //  app.get("/",(req,res)=>{
 //     res.send("working");
