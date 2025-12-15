@@ -109,6 +109,12 @@ app.listen(PORT, () => {
 
 app.use("/listings" ,listingsRouter);
 app.use("/listings/:id/reviews" ,reviewsRouter);
+
+// Redirect root to listings so the home page shows listings by default
+app.get('/', (req, res) => {
+   return res.redirect('/listings');
+});
+
 app.use("/" ,userRouter);
 //Validation should only be used on create (POST) and update (PUT) routes.
 
