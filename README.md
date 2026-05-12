@@ -144,9 +144,9 @@ This project helped me understand how full-stack applications are built and mana
 
 # 🔗 Links
 
-* Live Demo: Add deployed link here
-* GitHub Repository: Add repository link here
+- Live Demo: [Wanderlust Live](https://major-project-0tje.onrender.com)
 
+- GitHub Repository: [GitHub Repo](https://github.com/PrathamSingh777/wanderlust)
 ---
 
 # 👨‍💻 Author
@@ -155,5 +155,5 @@ Pratham Shakya
 
 Aspiring Software Engineer | Full-Stack Developer
 
-LinkedIn: Add your LinkedIn profile
-GitHub: Add your GitHub profile
+LinkedIn: [linkedIn](https://www.linkedin.com/in/pratham-singh-3313902aa)
+GitHub:  [GitHubprofile](https://github.com/PrathamSingh777)
