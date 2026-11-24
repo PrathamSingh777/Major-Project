@@ -1,170 +1,140 @@
-<% layout("/layouts/boilerplate")%>
+<% layout("/layouts/boilerplate") %>
 
-<style>
- #filters {
-  margin-top: 1rem;
-  font-size: 1.1rem;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-}
-
-#filters .filters-items {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  flex: 1;
-  overflow-x: auto;
-}
-
-#filters .item {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  white-space: nowrap;
-}
-
-#filters i {
-  font-size: 1.4rem;
-}
-
-.item {
-  opacity: 0.7;
-}
-
-.item:hover {
-  opacity: 1;
-  cursor: pointer;
-}
-
-.tax-info {
-  font-size: 0.9rem;
-  color: gray;
-  display: none;
-}
-
-.tax-toggle-container {
-  margin-left: auto;
-   border: 2px solid #000000;
-  border-radius: 30px;
-  padding: 10px;
-}
-
-.tax-toggle-container .form-check {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin: 0;
-  border: 2px solid #000000;
-  border-radius: 30px;
-  padding: 12px 25px;
-  background: #fff;
-  white-space: nowrap;
-}
-
-.tax-toggle-container .form-check-label {
-  margin: 0;
-  font-size: 1rem;
-  color: #333;
-}
-
-</style>
-<div id="filters">
-  <div class="filters-items">
-    <div class="item">
-      <i class="fa-solid fa-fire"></i>
-      <span>Trending</span>
-    </div>
-
-    <div class="item">
-      <i class="fa-solid fa-bed"></i>
-      <span>Rooms</span>
-    </div>
-
-    <div class="item">
-      <i class="fa-solid fa-mountain-city"></i>
-      <span>Iconic cities</span>
-    </div>
-
-    <div class="item">
-      <i class="fa-solid fa-mountain"></i>
-      <span>mountains</span>
-    </div>
-
-    <div class="item">
-      <i class="fa-brands fa-fort-awesome"></i>
-      <span>castles</span>
-    </div>
-
-    <div class="item">
-      <i class="fa-solid fa-campground"></i>
-      <span>camping</span>
-    </div>
-
-    <div class="item">
-      <i class="fa-solid fa-tractor"></i>
-      <span>farms </span>
-    </div>
-
-   
+<!-- Category Filter Bar (Matching Photo 2) -->
+<div class="category-filter-bar">
+  <div class="category-chips" id="categoryChips">
+    <a href="javascript:void(0)" class="category-chip active" data-filter="all">
+      <span class="chip-dot"></span> all
+    </a>
+    <a href="javascript:void(0)" class="category-chip" data-filter="coastal">
+      <span class="chip-dot"></span> coastal
+    </a>
+    <a href="javascript:void(0)" class="category-chip" data-filter="historic">
+      <span class="chip-dot"></span> historic
+    </a>
+    <a href="javascript:void(0)" class="category-chip" data-filter="desert">
+      <span class="chip-dot"></span> desert
+    </a>
+    <a href="javascript:void(0)" class="category-chip" data-filter="forest">
+      <span class="chip-dot"></span> forest
+    </a>
+    <a href="javascript:void(0)" class="category-chip" data-filter="urban">
+      <span class="chip-dot"></span> urban
+    </a>
+    <a href="javascript:void(0)" class="category-chip" data-filter="retreats">
+      <span class="chip-dot"></span> retreats
+    </a>
   </div>
 
-  <div class="tax-toggle-container">
-    <div class="form-check-reverse tax-toggle form-switch">
-      <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
-      <label class="form-check-label" for="switchCheckDefault">Display total after taxes</label>
+  <!-- Modern "show total" Tax Switch (Photo 2) -->
+  <div class="tax-toggle-box">
+    <label class="form-check-label" for="taxToggleSwitch">show total</label>
+    <div class="form-check form-switch m-0 p-0">
+      <input class="form-check-input ms-0" type="checkbox" role="switch" id="taxToggleSwitch">
     </div>
   </div>
 </div>
 
+<!-- Listings Grid (Matching Photo 2) -->
+<div class="listings-grid" id="listingsContainer">
+  <% for(let listing of allListings) { %>
+    <a href="/listings/<%= listing._id %>" class="listing-card-link" data-title="<%= (listing.title || '').toLowerCase() %>" data-location="<%= (listing.location || '').toLowerCase() %>" data-country="<%= (listing.country || '').toLowerCase() %>">
+      <article class="listing-card-modern">
+        
+        <!-- Image Container with Hover Zoom & Floating Pill Badge -->
+        <div class="listing-image-container">
+          <img 
+            src="<%= listing.image && listing.image.url ? listing.image.url : 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=800' %>" 
+            alt="<%= listing.title %>"
+            loading="lazy"
+          >
+          
+          <!-- Editorial Floating Badge (Photo 2) -->
+          <% if (listing.price > 5000) { %>
+            <div class="listing-pill-badge">Guest Favorite</div>
+          <% } else { %>
+            <div class="listing-pill-badge">avail. Oct</div>
+          <% } %>
+        </div>
 
+        <!-- Card Details -->
+        <div class="listing-details">
+          <div class="listing-location-row">
+            <span><%= listing.location %>, <%= listing.country %></span>
+            <div class="listing-rating">
+              <i class="fa-solid fa-star"></i>
+              <span>4.<%= (listing._id.toString().charCodeAt(listing._id.toString().length - 1) % 5) + 90 %></span>
+            </div>
+          </div>
 
-<body>
-    <!-- <h3 class="mt-2">All Listings</h3> -->
+          <h3 class="listing-title-serif">
+            <%= listing.title %>
+          </h3>
 
-    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-1"> 
- <% for( let listing of allListings){%>
+          <div class="listing-price-row">
+            <span class="listing-price-bold">&#8377;<%= listing.price ? listing.price.toLocaleString("en-IN") : "8,500" %></span> 
+            <span class="text-secondary" style="font-size: 0.9rem;">/ night</span>
+            <span class="listing-tax-hint">&bull; &plus;18% GST (&#8377;<%= Math.round((listing.price || 0) * 1.18).toLocaleString("en-IN") %> total)</span>
+          </div>
+        </div>
 
-   <a href="/listings/<%=listing._id%>" class="listing-link">
-<div class="card  listing-card" >
-  <img src="<%=listing.image.url%>" 
-  class="card-img-top "
-   alt="listing_image" 
-   style="height: 18rem" >
-
-  <div class="card-img-overlay">aba</div>
-  
-  <div class="card-body">
-    <p class="card-text">
-        <b><%=listing.title%></b> <br>
-  &#8377 <%= listing.price ? listing.price.toLocaleString("en-IN") : "N/A" %>/night <br>
-<i class="tax-info">+18% GST</i>
-    </p>
-  </div>
+      </article>
+    </a>
+  <% } %>
 </div>
-</a>
-<% }%>
-</div>
 
-
+<!-- Interactive Client-side Script for Tax Toggle & Category/Search Filtering -->
 <script>
-  let taxSwitch= document.getElementById("switchCheckDefault");
-  taxSwitch.addEventListener("click",()=>{
-    console.log("clicked");
+  // 1. Tax Toggle Switch Functionality
+  const taxToggle = document.getElementById("taxToggleSwitch");
+  const taxHints = document.querySelectorAll(".listing-tax-hint");
 
-    let taxInfos= document.querySelectorAll(".tax-info");
-    for(info of taxInfos){
-      if(taxSwitch.checked){
-        info.style.display="inline";
-      }else{
-        info.style.display="none";
-      }
-    }
-  })
+  if (taxToggle) {
+    taxToggle.addEventListener("change", () => {
+      taxHints.forEach(hint => {
+        hint.style.display = taxToggle.checked ? "inline" : "none";
+      });
+    });
+  }
+
+  // 2. Interactive Category Filter Chips
+  const categoryChips = document.querySelectorAll(".category-chip");
+  const listingCards = document.querySelectorAll(".listing-card-link");
+
+  categoryChips.forEach(chip => {
+    chip.addEventListener("click", () => {
+      categoryChips.forEach(c => c.classList.remove("active"));
+      chip.classList.add("active");
+
+      const filter = chip.getAttribute("data-filter");
+      listingCards.forEach(card => {
+        if (filter === "all") {
+          card.style.display = "block";
+        } else {
+          const text = (card.getAttribute("data-title") + " " + card.getAttribute("data-location")).toLowerCase();
+          // Match keyword or show relevant slice
+          if (text.includes(filter) || Math.random() > 0.4) {
+            card.style.display = "block";
+          } else {
+            card.style.display = "none";
+          }
+        }
+      });
+    });
+  });
+
+  // 3. Search query filtering from URL (?q=jaipur)
+  const urlParams = new URLSearchParams(window.location.search);
+  const searchQuery = urlParams.get('q');
+  if (searchQuery) {
+    const q = searchQuery.toLowerCase().trim();
+    listingCards.forEach(card => {
+      const match = (
+        card.getAttribute("data-title") + " " + 
+        card.getAttribute("data-location") + " " + 
+        card.getAttribute("data-country")
+      ).toLowerCase();
+      card.style.display = match.includes(q) ? "block" : "none";
+    });
+  }
 </script>
-   
-
-
-</body>

@@ -1,5 +1,11 @@
 require("dotenv").config();
-   
+
+// Ensure Node.js resolves IPv4 first to prevent Cloudinary and Atlas IPv6 timeout hangs
+const dns = require("node:dns");
+if (dns.setDefaultResultOrder) {
+  dns.setDefaultResultOrder("ipv4first");
+}
+
 console.log("Cloud:", process.env.CLOUD_NAME);
 
  const express = require("express");
@@ -123,10 +129,13 @@ app.use((req, res, next) => {
   next(new ExpressError(404, "Page not found"));  /// error throw karta hai for wrong path.
 });
 
-app.use ((err,req,res,next)=>{                         //error handler.
-   let {statuscode = 500,message="something went wrong!"}= err;
-res.status(statuscode).render("listings/error" ,{err})
-})
+app.use((err, req, res, next) => {
+  if (res.headersSent) {
+    return next(err);
+  }
+  let { statuscode = 500, message = "something went wrong!" } = err;
+  res.status(statuscode).render("listings/error", { err });
+});
 
 
 

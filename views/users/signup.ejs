@@ -1,28 +1,89 @@
 <% layout("/layouts/boilerplate.ejs") %>
 
-<div class="row mt-3">
-        <div class="col-6 offset-3">
-<h2>SignUp on Wanderlust</h2>
-            <form action="/signup" method="post"> 
-                 <div class="mb-3">
-                    <label for="username" class="form-label">username</label>
-                    <input type="text" name="username"  class="form-control"  id="username" required>
-                    
-                </div>
+<div class="auth-page-container">
+  <div class="auth-split-card">
+    
+    <!-- Left: Signup Form -->
+    <div class="auth-form-side">
+      <div class="auth-brand-heading">
+        wanderlust<span class="brand-dot">.</span>
+      </div>
 
-                 <div class="mb-3">
-                    <label for="email" class="form-label">email</label>
-                    <input type="text" name="email"  class="form-control" id="email" required>
-                    
-                </div>
+      <h1 class="auth-title">Create an account</h1>
+      <p class="auth-subtitle">
+        Let's find your next slow stay. Already have an account? <a href="/login">Log in</a>
+      </p>
 
-                 <div class="mb-3">
-                    <label for="password" class="form-label">password</label>
-                    <input type="password" name="password"  class="form-control" id=" password"required>
-                    
-                </div>
-                <button class="btn btn-success">Signup</button>
+      <form action="/signup" method="POST" class="needs-validation" novalidate>
+        <div class="auth-form-group">
+          <label for="username" class="auth-label">Username</label>
+          <input 
+            type="text" 
+            name="username" 
+            id="username" 
+            class="auth-input-control" 
+            placeholder="e.g., prathamsingh" 
+            required
+            autocomplete="username"
+          >
+        </div>
 
-            </form>
-            </div>
-            </div>
+        <div class="auth-form-group">
+          <label for="email" class="auth-label">Email</label>
+          <input 
+            type="email" 
+            name="email" 
+            id="email" 
+            class="auth-input-control" 
+            placeholder="e.g., pratham@example.com" 
+            required
+            autocomplete="email"
+          >
+        </div>
+
+        <div class="auth-form-group">
+          <label for="password" class="auth-label">Password</label>
+          <input 
+            type="password" 
+            name="password" 
+            id="password" 
+            class="auth-input-control" 
+            placeholder="••••••••••••" 
+            required
+            autocomplete="new-password"
+          >
+        </div>
+
+        <!-- Two-tone Continue Button (Photo 1) -->
+        <button type="submit" class="btn-auth-continue">
+          <span class="btn-auth-continue-stripe"></span>
+          <span class="btn-auth-continue-text">Continue</span>
+        </button>
+      </form>
+
+      <div class="auth-social-divider">
+        <span>Or sign up with</span>
+        <a href="javascript:void(0)" class="social-auth-link">
+          <i class="fa-brands fa-google me-1"></i> Google
+        </a>
+        <span>|</span>
+        <a href="javascript:void(0)" class="social-auth-link">
+          <i class="fa-brands fa-apple me-1"></i> Apple
+        </a>
+      </div>
+    </div>
+
+    <!-- Right: Editorial Visual & Testimonial Quote -->
+    <div class="auth-visual-side">
+      <div class="auth-quote-card">
+        <p class="auth-quote-text">
+          &ldquo;A truly magical stay. It felt less like a hotel and more like a gentle, timeless retreat.&rdquo;
+        </p>
+        <div class="auth-quote-author">
+          &mdash; Guest Review, Saffron Cottage &#9733;&#9733;&#9733;&#9733;&#9733;
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

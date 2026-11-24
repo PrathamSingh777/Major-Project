@@ -1,24 +1,76 @@
 <% layout("/layouts/boilerplate.ejs") %>
 
-<div class="row mt-3">
-        <div class="col-6 offset-3">
-<h2>login on Wanderlust</h2>
-            <form action="/login" method="post"> 
-                 <div class="mb-3">
-                    <label for="username" class="form-label">username</label>
-                    <input type="text" name="username"  class="form-control"  id="username" required>
-                    
-                </div>
+<div class="auth-page-container">
+  <div class="auth-split-card">
+    
+    <!-- Left: Login Form -->
+    <div class="auth-form-side">
+      <div class="auth-brand-heading">
+        wanderlust<span class="brand-dot">.</span>
+      </div>
 
-               
+      <h1 class="auth-title">Welcome back</h1>
+      <p class="auth-subtitle">
+        Continue your slow travel journey. Don't have an account? <a href="/signup">Sign up</a>
+      </p>
 
-                 <div class="mb-3">
-                    <label for="password" class="form-label">password</label>
-                    <input type="password" name="password"  class="form-control" id=" password"required>
-                    
-                </div>
-                <button class="btn btn-success">login</button>
+      <form action="/login" method="POST" class="needs-validation" novalidate>
+        <div class="auth-form-group">
+          <label for="username" class="auth-label">Username</label>
+          <input 
+            type="text" 
+            name="username" 
+            id="username" 
+            class="auth-input-control" 
+            placeholder="e.g., prathamsingh" 
+            required
+            autocomplete="username"
+          >
+        </div>
 
-            </form>
-            </div>
-            </div>
+        <div class="auth-form-group">
+          <label for="password" class="auth-label">Password</label>
+          <input 
+            type="password" 
+            name="password" 
+            id="password" 
+            class="auth-input-control" 
+            placeholder="••••••••••••" 
+            required
+            autocomplete="current-password"
+          >
+        </div>
+
+        <!-- Two-tone Continue Button (Photo 1) -->
+        <button type="submit" class="btn-auth-continue">
+          <span class="btn-auth-continue-stripe"></span>
+          <span class="btn-auth-continue-text">Log in</span>
+        </button>
+      </form>
+
+      <div class="auth-social-divider">
+        <span>Or continue with</span>
+        <a href="javascript:void(0)" class="social-auth-link">
+          <i class="fa-brands fa-google me-1"></i> Google
+        </a>
+        <span>|</span>
+        <a href="javascript:void(0)" class="social-auth-link">
+          <i class="fa-brands fa-apple me-1"></i> Apple
+        </a>
+      </div>
+    </div>
+
+    <!-- Right: Editorial Visual & Testimonial Quote -->
+    <div class="auth-visual-side">
+      <div class="auth-quote-card">
+        <p class="auth-quote-text">
+          &ldquo;Wanderlust redefines luxury not as excess, but as stillness, craft, and connection with nature.&rdquo;
+        </p>
+        <div class="auth-quote-author">
+          &mdash; Curated Stays Editorial &#9733;&#9733;&#9733;&#9733;&#9733;
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

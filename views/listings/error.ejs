@@ -1,7 +1,14 @@
-<%layout("/layouts/boilerplate")%>
-<div class="row-3 mt-3" >
-    <div class="alert alert-danger  col-8 offset-2" role="alert">
-  <h4 class="alert-heading"><%= err.message%></h4>
-  
-</div>
+<% layout("/layouts/boilerplate") %>
+
+<div class="container-custom py-5">
+  <div class="form-page-card text-center py-5">
+    <div class="mb-3 text-danger fs-1">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+    </div>
+    <h2 class="form-page-title mb-2">Something Went Wrong</h2>
+    <p class="text-secondary mb-4"><%= err && err.message ? err.message : 'The requested page or stay could not be retrieved.' %></p>
+    <a href="/listings" class="btn btn-dark" style="border-radius: var(--radius-pill); padding: 10px 24px; background: #1C1917;">
+      Return to Slow Stays
+    </a>
+  </div>
 </div>
