@@ -146,7 +146,7 @@ This project helped me understand how full-stack applications are built and mana
 
 - Live Demo: [Wanderlust Live](https://major-project-0tje.onrender.com)
 
-- GitHub Repository: [GitHub Repo](https://github.com/PrathamSingh777/wanderlust)
+- GitHub Repository: [GitHub Repo](https://github.com/PrathamSingh777/Major-Project)
 ---
 
 # 👨‍💻 Author
